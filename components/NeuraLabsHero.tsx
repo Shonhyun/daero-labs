@@ -15,7 +15,7 @@ export function NeuraLabsHero() {
   return (
     <motion.section 
       style={{ y: yParallax, opacity: opacityFade, scale: scaleFade }}
-      className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden"
+      className="h-[100dvh] w-full flex flex-col items-center justify-center relative overflow-hidden"
     >
       {/* Dynamic Floating Background Orbs */}
       <motion.div 
@@ -38,7 +38,7 @@ export function NeuraLabsHero() {
       />
       
       {/* Main Text */}
-      <h1 className="text-[15vw] md:text-[12vw] font-outfit font-black tracking-tighter text-rich-black dark:text-white-smoke leading-none z-10 text-center flex items-baseline justify-center">
+      <h1 className="text-[11vw] sm:text-[12vw] md:text-[12vw] font-outfit font-black tracking-tighter text-rich-black dark:text-white-smoke leading-none z-10 text-center flex items-baseline justify-center w-full max-w-full px-4">
         {text.map((char, index) => (
           <motion.span
             key={index}
