@@ -76,7 +76,7 @@ export function Navbar() {
               className={`
                 px-4 py-2 rounded-full text-sm font-semibold transition-all
                 ${isScrolled 
-                   ? "bg-signal text-rich-black hover:bg-signal/90"
+                   ? "bg-accent text-accent-fg hover:bg-accent/90"
                    : "bg-rich-black text-white hover:bg-opacity-80 dark:bg-white-smoke dark:text-rich-black"
                 }
               `}
@@ -118,7 +118,7 @@ export function Navbar() {
                   </Link>
                ))}
                <hr className="border-dim-gray/20 my-4" />
-               <Link href="/contact" className="text-signal">
+               <Link href="/contact" className="text-accent">
                   Start a Project
                </Link>
             </div>

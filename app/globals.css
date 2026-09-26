@@ -2,27 +2,36 @@
 
 @variant dark (&:where(.dark, .dark *));
 
+/* Monochrome palette, taken from the black-and-white Daero Labs mark. */
 @theme {
-    --color-white-smoke: #F3F3F3;
-    --color-rich-black: #0A0B10;
+    --color-white-smoke: #F5F5F5;
+    --color-rich-black: #0A0A0A;
     --color-dim-gray: #646464;
     --color-silver: #B5B5B5;
     --color-onyx: #3C3C3C;
-    --color-signal: #FF7A1A;
-    --color-panel: #151823;
+    --color-panel: #111111;
 
-    --font-inter: Inter, sans-serif;
-    --font-outfit: var(--font-outfit), sans-serif;
+    /* Accent flips with the theme: ink on light, white on dark (like the inverted mark). */
+    --color-accent: var(--accent);
+    --color-accent-fg: var(--accent-fg);
+}
+
+@theme inline {
+    --font-display: var(--font-sora), var(--font-inter), sans-serif;
 }
 
 :root {
     --background: var(--color-white-smoke);
     --foreground: var(--color-rich-black);
+    --accent: #0A0A0A;
+    --accent-fg: #F5F5F5;
 }
 
 .dark {
     --background: var(--color-rich-black);
     --foreground: var(--color-white-smoke);
+    --accent: #F5F5F5;
+    --accent-fg: #0A0A0A;
 }
 
 html {
@@ -32,14 +41,18 @@ html {
 body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-inter);
+    font-family: var(--font-inter), sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3 {
+    font-family: var(--font-sora), var(--font-inter), sans-serif;
+}
+
 ::selection {
-    background-color: var(--color-signal);
-    color: var(--color-rich-black);
+    background-color: var(--accent);
+    color: var(--accent-fg);
 }
 
 /* Glassmorphism utility */
@@ -50,5 +63,5 @@ body {
 }
 
 .dark .glass {
-    background: rgba(10, 11, 16, 0.7);
+    background: rgba(10, 10, 10, 0.7);
 }

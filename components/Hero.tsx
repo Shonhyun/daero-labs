@@ -16,7 +16,7 @@ export function Hero() {
           className="w-full md:w-1/2"
         >
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-rich-black dark:text-white-smoke leading-tight">
-            Building the <span className="text-signal">Road</span> Ahead.
+            <span className="text-dim-gray dark:text-silver">Building the</span> Road Ahead.
           </h1>
 
           <p className="text-xl md:text-2xl text-dim-gray dark:text-silver mb-10 max-w-2xl leading-relaxed">
@@ -26,7 +26,7 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 rounded-full bg-signal text-rich-black font-semibold text-lg hover:bg-signal/90 transition-all flex items-center justify-center gap-2 group"
+              className="px-8 py-4 rounded-full bg-accent text-accent-fg font-semibold text-lg hover:bg-accent/90 transition-all flex items-center justify-center gap-2 group"
             >
               Start a Project
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -54,7 +54,7 @@ export function Hero() {
       </div>
       
       {/* Background Ambience */}
-      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-signal/5 rounded-full blur-[100px] opacity-50" />
+      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-dim-gray/10 rounded-full blur-[100px] opacity-50" />
       <div className="absolute bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-panel/5 rounded-full blur-[100px] opacity-50" />
     </section>
   )

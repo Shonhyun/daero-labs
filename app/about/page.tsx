@@ -12,7 +12,7 @@ export default function About() {
 
         <section className="mb-24">
             <h2 className="text-3xl font-bold mb-8">The Name</h2>
-            <Card noHover className="border-l-4 border-l-signal">
+            <Card noHover className="border-l-4 border-l-accent">
                 <p className="text-lg text-dim-gray dark:text-silver leading-relaxed">
                     <span className="font-bold text-rich-black dark:text-white-smoke">Daero (대로)</span> means
                     &ldquo;the great road.&rdquo; It is what we build for our clients: a clear, well-engineered path
@@ -56,7 +56,7 @@ export default function About() {
                 {/* Level 2: Engineering */}
                 <div className="relative mt-12">
                     <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-rich-black border border-dim-gray/20 dark:border-white/10 z-20 flex items-center justify-center">
-                        <div className="w-1 h-1 rounded-full bg-signal" />
+                        <div className="w-1 h-1 rounded-full bg-accent" />
                     </div>
                     <TeamNode name="John Christian" role="Fullstack • Machine Learning" />
                 </div>

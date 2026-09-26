@@ -62,7 +62,7 @@ export default function Services() {
                         <div className="grid sm:grid-cols-2 gap-4">
                             {service.details.map((detail, i) => (
                                 <Card key={i} className="flex items-center gap-4 py-6" noHover>
-                                    <CheckCircle2 className="text-signal" size={20} />
+                                    <CheckCircle2 className="text-accent" size={20} />
                                     <span className="font-medium">{detail}</span>
                                 </Card>
                             ))}

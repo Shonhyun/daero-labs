@@ -21,7 +21,7 @@ export const ComingSoon = ({
             <LottieAnimation src="https://lottie.host/793c5a82-43ab-43ff-88e1-b1c1f1cdfc73/cOHKnOnPw4.lottie" />
         </div>
         
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 font-[family-name:var(--font-outfit)]">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display">
             {title}
         </h1>
         <p className="text-dim-gray dark:text-silver max-w-md mb-8">

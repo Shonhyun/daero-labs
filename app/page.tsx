@@ -21,7 +21,7 @@ export default function Home() {
             </div>
             <Link
               href="/services"
-              className="hidden md:flex items-center gap-2 text-signal font-medium hover:gap-4 transition-all"
+              className="hidden md:flex items-center gap-2 text-accent font-medium hover:gap-4 transition-all"
             >
               View All Services <ArrowRight size={20} />
             </Link>
@@ -83,7 +83,7 @@ export default function Home() {
           <div className="mt-12 md:hidden">
             <Link
               href="/services"
-              className="flex items-center gap-2 text-signal font-medium"
+              className="flex items-center gap-2 text-accent font-medium"
             >
               View All Services <ArrowRight size={20} />
             </Link>
@@ -112,7 +112,7 @@ export default function Home() {
                         We don't outsource. We don't take shortcuts. Every line of code and every pixel is crafted by our own in-house team.
                     </p>
                 </div>
-                <Link href="/about" className="inline-flex items-center gap-2 mt-8 text-rich-black dark:text-white-smoke font-semibold underline underline-offset-4 hover:decoration-signal transition-all">
+                <Link href="/about" className="inline-flex items-center gap-2 mt-8 text-rich-black dark:text-white-smoke font-semibold underline underline-offset-4 hover:decoration-dim-gray transition-all">
                     Meet the Team <ArrowRight size={20} />
                 </Link>
             </div>
