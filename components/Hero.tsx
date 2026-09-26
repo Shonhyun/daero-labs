@@ -16,7 +16,7 @@ export function Hero() {
           className="w-full md:w-1/2"
         >
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-rich-black dark:text-white-smoke leading-tight">
-            <span className="text-dim-gray dark:text-silver">Building the</span> Road Ahead.
+            <span className="text-dim-gray dark:text-silver">Build</span> What&apos;s Next.
           </h1>
 
           <p className="text-xl md:text-2xl text-dim-gray dark:text-silver mb-10 max-w-2xl leading-relaxed">

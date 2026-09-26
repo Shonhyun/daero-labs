@@ -31,7 +31,7 @@ export function Footer() {
                <Logo inverted />
             </Link>
             <p className="text-silver max-w-xs text-sm leading-relaxed">
-              Building the road ahead. Thoughtful software systems with clean architecture and future-ready tools.
+              Build what&apos;s next. Thoughtful software systems with clean architecture and future-ready tools.
             </p>
           </div>
 
