@@ -7,8 +7,19 @@ export default function About() {
         <h1 className="text-5xl md:text-7xl font-bold mb-12 tracking-tight">Who We Are</h1>
         
         <p className="text-xl md:text-2xl text-dim-gray dark:text-silver leading-relaxed mb-20">
-            NeuraLabs is an early-stage software studio formed by engineers and designers who care deeply about quality, clarity, and long-term maintainability.
+            Daero Labs is an early-stage software studio formed by engineers and designers who care deeply about quality, clarity, and long-term maintainability.
         </p>
+
+        <section className="mb-24">
+            <h2 className="text-3xl font-bold mb-8">The Name</h2>
+            <Card noHover className="border-l-4 border-l-signal">
+                <p className="text-lg text-dim-gray dark:text-silver leading-relaxed">
+                    <span className="font-bold text-rich-black dark:text-white-smoke">Daero (대로)</span> means
+                    &ldquo;the great road.&rdquo; It is what we build for our clients: a clear, well-engineered path
+                    from idea to product, built to carry them further than where they started.
+                </p>
+            </Card>
+        </section>
 
         <section className="mb-24">
             <h2 className="text-3xl font-bold mb-8">Our Philosophy</h2>
@@ -32,44 +43,22 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-16 text-center">Meet the Builders</h2>
             
             <div className="flex flex-col items-center">
-                {/* Level 1: Founders */}
+                {/* Level 1: Leadership */}
                 <div className="relative z-10">
-                    <div className="flex gap-8 md:gap-16">
-                        <TeamNode name="Aris Robles" role="CEO • Fullstack" />
+                    <div className="flex gap-4 md:gap-16">
                         <TeamNode name="Shoun Ramos" role="CTO • Tech Lead" />
+                        <TeamNode name="James Heaven" role="COO • Operations & Finance" />
                     </div>
                     {/* Vertical line down from center */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 w-px h-12 bg-dim-gray/20 dark:bg-white/10" />
                 </div>
 
-                {/* Level 2: Core Team */}
-                <div className="relative mt-12 pt-8 w-full max-w-4xl">
-                     {/* Horizontal connector line */}
-                    <div className="absolute top-0 left-[10%] right-[10%] h-px bg-dim-gray/20 dark:bg-white/10" />
-                    
-                    {/* Vertical lines connecting to horizontal line */}
-                    <div className="absolute top-[-1px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-rich-black border border-dim-gray/20 dark:border-white/10 z-20 flex items-center justify-center">
-                        <div className="w-1 h-1 rounded-full bg-gold" />
+                {/* Level 2: Engineering */}
+                <div className="relative mt-12">
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-rich-black border border-dim-gray/20 dark:border-white/10 z-20 flex items-center justify-center">
+                        <div className="w-1 h-1 rounded-full bg-signal" />
                     </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div className="relative">
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-px h-8 bg-dim-gray/20 dark:bg-white/10" />
-                            <TeamNode name="Isaiah Gabriel" role="CMO • Digital Marketing" />
-                        </div>
-                        <div className="relative">
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-px h-8 bg-dim-gray/20 dark:bg-white/10" />
-                            <TeamNode name="James Heaven" role="COO • Operations & Finance" />
-                        </div>
-                        <div className="relative">
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-px h-8 bg-dim-gray/20 dark:bg-white/10" />
-                            <TeamNode name="John Christian" role="Fullstack • Machine Learning" />
-                        </div>
-                        <div className="relative">
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-px h-8 bg-dim-gray/20 dark:bg-white/10" />
-                            <TeamNode name="Jendel Juguilon" role="UI/UX Designer • Creative Lead" />
-                        </div>
-                    </div>
+                    <TeamNode name="John Christian" role="Fullstack • Machine Learning" />
                 </div>
             </div>
         </section>
@@ -80,7 +69,7 @@ export default function About() {
 
 function TeamNode({ name, role }: { name: string, role: string }) {
   return (
-    <div className="flex flex-col items-center bg-white dark:bg-onyx/30 p-6 rounded-2xl border border-black/5 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-300 w-40 md:w-48">
+    <div className="flex flex-col items-center bg-white dark:bg-onyx/30 p-6 rounded-2xl border border-black/5 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-300 w-36 sm:w-40 md:w-48">
       <div className="w-16 h-16 rounded-full bg-gradient-to-br from-dim-gray/10 to-dim-gray/20 dark:from-white/5 dark:to-white/10 mb-4 flex items-center justify-center text-lg font-bold text-dim-gray dark:text-silver">
         {name.charAt(0)}
       </div>

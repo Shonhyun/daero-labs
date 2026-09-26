@@ -21,7 +21,7 @@ export default function Home() {
             </div>
             <Link
               href="/services"
-              className="hidden md:flex items-center gap-2 text-gold font-medium hover:gap-4 transition-all"
+              className="hidden md:flex items-center gap-2 text-signal font-medium hover:gap-4 transition-all"
             >
               View All Services <ArrowRight size={20} />
             </Link>
@@ -83,7 +83,7 @@ export default function Home() {
           <div className="mt-12 md:hidden">
             <Link
               href="/services"
-              className="flex items-center gap-2 text-gold font-medium"
+              className="flex items-center gap-2 text-signal font-medium"
             >
               View All Services <ArrowRight size={20} />
             </Link>
@@ -106,13 +106,13 @@ export default function Home() {
                 </h2>
                 <div className="space-y-6 text-lg text-dim-gray dark:text-silver leading-relaxed">
                     <p>
-                        NeuraLabs is an early-stage software studio formed by developers and designers who care deeply about quality, clarity, and long-term maintainability.
+                        Daero Labs is an early-stage software studio formed by developers and designers who care deeply about quality, clarity, and long-term maintainability.
                     </p>
                     <p>
-                        We don't outsource. We don't cut corners. Every line of code and every pixel is crafted by our in-house team of 6 passionate creators.
+                        We don't outsource. We don't take shortcuts. Every line of code and every pixel is crafted by our own in-house team.
                     </p>
                 </div>
-                <Link href="/about" className="inline-flex items-center gap-2 mt-8 text-rich-black dark:text-white-smoke font-semibold underline underline-offset-4 hover:decoration-gold transition-all">
+                <Link href="/about" className="inline-flex items-center gap-2 mt-8 text-rich-black dark:text-white-smoke font-semibold underline underline-offset-4 hover:decoration-signal transition-all">
                     Meet the Team <ArrowRight size={20} />
                 </Link>
             </div>
@@ -124,7 +124,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Ready to build?</h2>
             <p className="text-xl text-dim-gray dark:text-silver mb-12">
-                Let's discuss your project and see if we're the right fit for your vision.
+                Let's map out your project and find the best road forward, together.
             </p>
             <Link
               href="/contact"

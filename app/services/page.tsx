@@ -43,7 +43,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">Services</h1>
         <p className="text-xl text-dim-gray dark:text-silver max-w-2xl mb-24">
-            We build software that solves real problems. No fluff, just robust engineering and thoughtful design.
+            We build software that solves real problems. No fluff, no detours, just robust engineering and thoughtful design.
         </p>
 
         <div className="space-y-24">
@@ -62,7 +62,7 @@ export default function Services() {
                         <div className="grid sm:grid-cols-2 gap-4">
                             {service.details.map((detail, i) => (
                                 <Card key={i} className="flex items-center gap-4 py-6" noHover>
-                                    <CheckCircle2 className="text-gold" size={20} />
+                                    <CheckCircle2 className="text-signal" size={20} />
                                     <span className="font-medium">{detail}</span>
                                 </Card>
                             ))}

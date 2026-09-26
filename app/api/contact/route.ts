@@ -28,7 +28,7 @@ export async function POST(req: Request) {
             from: process.env.EMAIL_USER, // Sender address
             to: 'shounramos09@gmail.com', // Receiver address (yourself)
             replyTo: email, // Allow you to reply directly to the user
-            subject: `New Inquiry from NeuraLabs: ${name}`,
+            subject: `New Inquiry from Daero Labs: ${name}`,
             text: `
         Name: ${name}
         Email: ${email}
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
         ${message}
       `,
             html: `
-        <h3>New Inquiry from NeuraLabs Website</h3>
+        <h3>New Inquiry from Daero Labs Website</h3>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <br/>

@@ -4,12 +4,12 @@
 
 @theme {
     --color-white-smoke: #F3F3F3;
-    --color-rich-black: #050C18;
+    --color-rich-black: #0A0B10;
     --color-dim-gray: #646464;
     --color-silver: #B5B5B5;
     --color-onyx: #3C3C3C;
-    --color-gold: #FCA311;
-    --color-deep-navy: #14213D;
+    --color-signal: #FF7A1A;
+    --color-panel: #151823;
 
     --font-inter: Inter, sans-serif;
     --font-outfit: var(--font-outfit), sans-serif;
@@ -38,7 +38,7 @@ body {
 }
 
 ::selection {
-    background-color: var(--color-gold);
+    background-color: var(--color-signal);
     color: var(--color-rich-black);
 }
 
@@ -50,5 +50,5 @@ body {
 }
 
 .dark .glass {
-    background: rgba(5, 12, 24, 0.7);
+    background: rgba(10, 11, 16, 0.7);
 }

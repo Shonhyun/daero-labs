@@ -20,7 +20,7 @@ export default function Careers() {
                 </p>
                 <Link 
                     href="/contact" 
-                    className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-signal font-semibold hover:gap-3 transition-all"
                 >
                     Send an Open Application <ArrowRight size={20} />
                 </Link>

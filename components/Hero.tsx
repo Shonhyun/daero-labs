@@ -16,17 +16,17 @@ export function Hero() {
           className="w-full md:w-1/2"
         >
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-rich-black dark:text-white-smoke leading-tight">
-            Building <span className="text-dim-gray dark:text-silver">Systems</span> That Think.
+            Building the <span className="text-signal">Road</span> Ahead.
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-dim-gray dark:text-silver mb-10 max-w-2xl leading-relaxed">
-            Next-generation software development for the cognitive era. We build intelligent, scalable systems tailored to transform your complex business vision into reality.
+            We engineer intelligent, scalable web and mobile systems that turn your business vision into a clear path forward, from first commit to launch and beyond.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 rounded-full bg-gold text-rich-black font-semibold text-lg hover:bg-gold/90 transition-all flex items-center justify-center gap-2 group"
+              className="px-8 py-4 rounded-full bg-signal text-rich-black font-semibold text-lg hover:bg-signal/90 transition-all flex items-center justify-center gap-2 group"
             >
               Start a Project
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -54,8 +54,8 @@ export function Hero() {
       </div>
       
       {/* Background Ambience */}
-      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] opacity-50" />
-      <div className="absolute bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-deep-navy/5 rounded-full blur-[100px] opacity-50" />
+      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-signal/5 rounded-full blur-[100px] opacity-50" />
+      <div className="absolute bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-panel/5 rounded-full blur-[100px] opacity-50" />
     </section>
   )
 }

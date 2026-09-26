@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "./ThemeToggle"
+import { Logo } from "./Logo"
 
 const navLinks = [
   { name: "Services", href: "/services" },
@@ -50,19 +51,8 @@ export function Navbar() {
           `}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1 group mr-4">
-             <div className="relative flex items-end">
-                <span className={`font-[family-name:var(--font-outfit)] font-extrabold text-2xl md:text-[2rem] tracking-[-0.08em] text-rich-black dark:text-white-smoke leading-none`}>
-                  NeuraLabs
-                </span>
-                <span className="text-gold font-extrabold text-3xl md:text-4xl leading-none -mb-1 -ml-[2px]">.</span>
-                <svg
-                  className="w-6 h-6 text-white-smoke dark:text-rich-black fill-rich-black dark:fill-white-smoke absolute -right-3 -top-0.5 stroke-white dark:stroke-black stroke-[3px]"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M3 3l7 18 3.5-8.5L21 9l-18-6z" />
-                </svg>
-             </div>
+          <Link href="/" aria-label="Daero Labs home" className="group mr-4">
+             <Logo />
           </Link>
 
           {/* Desktop Nav */}
@@ -86,7 +76,7 @@ export function Navbar() {
               className={`
                 px-4 py-2 rounded-full text-sm font-semibold transition-all
                 ${isScrolled 
-                   ? "bg-gold text-rich-black hover:bg-opacity-90" 
+                   ? "bg-signal text-rich-black hover:bg-signal/90"
                    : "bg-rich-black text-white hover:bg-opacity-80 dark:bg-white-smoke dark:text-rich-black"
                 }
               `}
@@ -128,7 +118,7 @@ export function Navbar() {
                   </Link>
                ))}
                <hr className="border-dim-gray/20 my-4" />
-               <Link href="/contact" className="text-gold">
+               <Link href="/contact" className="text-signal">
                   Start a Project
                </Link>
             </div>

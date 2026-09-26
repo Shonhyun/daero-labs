@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "NeuraLabs | Building Thoughtful Software Systems",
-  description: "NeuraLabs is a small, focused team building modern web and mobile applications with clean architecture and future-ready tools.",
+  title: "Daero Labs | Building the Road Ahead",
+  description: "Daero Labs is a small, focused software studio building modern web and mobile applications with clean architecture and future-ready tools.",
 };
 
 export default function RootLayout({

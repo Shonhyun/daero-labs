@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { Logo } from "./Logo"
 
 const footerLinks = {
   services: [
@@ -22,26 +23,15 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-deep-navy text-white-smoke pt-20 pb-10">
+    <footer className="bg-panel text-white-smoke pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-1 group mb-4">
-               <div className="relative flex items-end">
-                  <span className={`font-[family-name:var(--font-outfit)] font-extrabold text-2xl tracking-[-0.08em] text-white-smoke leading-none`}>
-                    NeuraLabs
-                  </span>
-                  <span className="text-gold font-extrabold text-3xl leading-none -mb-1 -ml-[2px]">.</span>
-                  <svg
-                    className="w-5 h-5 text-deep-navy fill-white-smoke absolute -right-2.5 -top-0 stroke-deep-navy stroke-[3px]"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M3 3l7 18 3.5-8.5L21 9l-18-6z" />
-                  </svg>
-               </div>
+            <Link href="/" aria-label="Daero Labs home" className="inline-flex group mb-4">
+               <Logo inverted />
             </Link>
             <p className="text-silver max-w-xs text-sm leading-relaxed">
-              Building thoughtful software systems with clean architecture and future-ready tools.
+              Building the road ahead. Thoughtful software systems with clean architecture and future-ready tools.
             </p>
           </div>
 
@@ -86,7 +76,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-dim-gray">
-          <p>© {new Date().getFullYear()} NeuraLabs. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Daero Labs. All rights reserved.</p>
           <div className="flex gap-6">
              <Link href="#" className="hover:text-silver transition-colors">Privacy Policy</Link>
              <Link href="#" className="hover:text-silver transition-colors">Terms of Service</Link>

@@ -61,7 +61,7 @@ export default function Contact() {
                     </div>
                     <div>
                         <p className="text-sm text-dim-gray dark:text-silver">Email us at</p>
-                        <a href="mailto:neuralabs.marketing02@gmail.com" className="text-lg font-semibold hover:text-gold transition-colors">neuralabs.marketing02@gmail.com</a>
+                        <a href="mailto:neuralabs.marketing02@gmail.com" className="text-lg font-semibold hover:text-signal transition-colors">neuralabs.marketing02@gmail.com</a>
                     </div>
                 </div>
                  <div className="flex items-center gap-4">
@@ -92,7 +92,7 @@ export default function Contact() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-gold outline-none transition-colors"
+                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-signal outline-none transition-colors"
                                 placeholder="John Doe"
                             />
                         </div>
@@ -104,7 +104,7 @@ export default function Contact() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-gold outline-none transition-colors"
+                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-signal outline-none transition-colors"
                                 placeholder="john@example.com"
                             />
                         </div>
@@ -118,7 +118,7 @@ export default function Contact() {
                             value={formData.message}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-gold outline-none transition-colors resize-none"
+                            className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-signal outline-none transition-colors resize-none"
                             placeholder="Tell us about your project..."
                         />
                     </div>
