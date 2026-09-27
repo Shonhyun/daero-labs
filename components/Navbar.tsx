@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "./ThemeToggle"
 import { Logo } from "./Logo"
@@ -32,9 +32,17 @@ export function Navbar() {
     setIsMobileMenuOpen(false)
   }, [pathname])
 
+  // Fade Navbar in on scroll (Homepage only)
+  const navOpacity = useTransform(scrollY, [300, 600], [0, 1])
+  const navY = useTransform(scrollY, [300, 600], [-20, 0])
+
+  const finalOpacity = pathname === "/" ? navOpacity : 1
+  const finalY = pathname === "/" ? navY : 0
+
   return (
     <>
       <motion.nav
+        style={{ opacity: finalOpacity, y: finalY }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 pointer-events-none"
       >
         <motion.div

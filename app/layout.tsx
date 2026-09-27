@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { BackToTop } from "@/components/BackToTop";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
@@ -20,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${sora.variable} antialiased bg-white-smoke dark:bg-rich-black transition-colors duration-300`}>
+      <body id="top" className={`${inter.variable} ${sora.variable} antialiased bg-white-smoke dark:bg-rich-black transition-colors duration-300`}>
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -30,9 +32,12 @@ export default function RootLayout({
             <div className="flex flex-col min-h-screen">
               <Navbar />
               <main className="flex-grow">
-                {children}
+                <SmoothScrollProvider>
+                  {children}
+                </SmoothScrollProvider>
               </main>
               <Footer />
+              <BackToTop />
             </div>
         </ThemeProvider>
       </body>

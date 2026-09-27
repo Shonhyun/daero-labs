@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { IntroHero } from "@/components/IntroHero";
 import { Card } from "@/components/Card";
 import Link from "next/link";
 import Image from "next/image";
@@ -51,6 +52,8 @@ const undergroundsFeatures = [
 export default function Home() {
   return (
     <>
+      <IntroHero />
+
       <Hero />
 
       {/* Services Preview */}
