@@ -38,6 +38,16 @@ const expertise = [
   },
 ];
 
+const undergroundsFeatures = [
+  "iOS & Android",
+  "Offline Mode",
+  "Smart Analytics",
+  "Gamified Rankings",
+  "Daily Challenges",
+  "Creator Marketplace",
+  "Built-in Calculator",
+];
+
 export default function Home() {
   return (
     <>
@@ -129,6 +139,17 @@ export default function Home() {
                 with offline mode, smart progress analytics, a built-in scientific calculator, and XP-based
                 rankings that make reviewing feel like a game.
               </p>
+
+              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-dim-gray dark:text-silver mb-3">
+                Key Features
+              </p>
+              <ul className="flex flex-wrap gap-2 mb-8">
+                {undergroundsFeatures.map((feature) => (
+                  <li key={feature} className="px-3 py-1 rounded-full text-xs font-medium bg-rich-black/5 dark:bg-white/10 text-rich-black dark:text-white-smoke">
+                    {feature}
+                  </li>
+                ))}
+              </ul>
 
               <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/10">
                 <p className="text-sm text-dim-gray dark:text-silver mb-4">
