@@ -61,7 +61,7 @@ export default function Contact() {
                     </div>
                     <div>
                         <p className="text-sm text-dim-gray dark:text-silver">Email us at</p>
-                        <a href="mailto:neuralabs.marketing02@gmail.com" className="text-lg font-semibold hover:underline underline-offset-4">neuralabs.marketing02@gmail.com</a>
+                        <a href="mailto:daerolabs@gmail.com" className="text-lg font-semibold hover:underline underline-offset-4">daerolabs@gmail.com</a>
                     </div>
                 </div>
                  <div className="flex items-center gap-4">

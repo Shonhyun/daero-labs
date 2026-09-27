@@ -1,5 +1,5 @@
 import { Card } from "@/components/Card";
-import { Code, Smartphone, Palette, CheckCircle2 } from "lucide-react";
+import { Code, Smartphone, Palette, Users, Monitor, CheckCircle2 } from "lucide-react";
 
 const services = [
   {
@@ -22,6 +22,28 @@ const services = [
         "React Native / Flutter",
         "App Store Submission",
         "Native Performance"
+    ]
+  },
+  {
+    icon: <Users size={32} />,
+    title: "CRM Systems",
+    description: "Custom CRMs built around how your team actually sells, supports, and follows up.",
+    details: [
+        "Lead & Pipeline Management",
+        "Customer Records & History",
+        "Role-Based Access",
+        "Reports & Dashboards"
+    ]
+  },
+  {
+    icon: <Monitor size={32} />,
+    title: "Desktop Applications",
+    description: "Reliable desktop software for the tools your business runs on every day.",
+    details: [
+        "Windows & macOS",
+        "Offline-Ready",
+        "Auto Updates",
+        "Internal Business Tools"
     ]
   },
   {

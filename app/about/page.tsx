@@ -1,5 +1,11 @@
 import { Card } from "@/components/Card";
 
+const coreTeam = [
+  { name: "James Heaven", role: "CMO • Marketing" },
+  { name: "John Christian", role: "Fullstack Developer" },
+  { name: "Kurt Viray", role: "Fullstack Developer" },
+];
+
 export default function About() {
   return (
     <div className="pt-32 pb-24 px-6 md:pt-48">
@@ -43,22 +49,30 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-16 text-center">Meet the Builders</h2>
             
             <div className="flex flex-col items-center">
-                {/* Level 1: Leadership */}
+                {/* Level 1: CEO */}
                 <div className="relative z-10">
-                    <div className="flex gap-4 md:gap-16">
-                        <TeamNode name="Shoun Ramos" role="CTO • Tech Lead" />
-                        <TeamNode name="James Heaven" role="COO • Operations & Finance" />
-                    </div>
+                    <TeamNode name="Shoun Ramos" role="CEO • Tech Lead" />
                     {/* Vertical line down from center */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 w-px h-12 bg-dim-gray/20 dark:bg-white/10" />
                 </div>
 
-                {/* Level 2: Engineering */}
-                <div className="relative mt-12">
+                {/* Level 2: Core Team */}
+                <div className="relative mt-12 pt-8 w-full max-w-3xl">
+                    {/* Horizontal connector line, from the first column's center to the last's (3 columns, two 2rem gaps) */}
+                    <div className="hidden md:block absolute top-0 left-[calc((100%-4rem)/6)] right-[calc((100%-4rem)/6)] h-px bg-dim-gray/20 dark:bg-white/10" />
+
                     <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-rich-black border border-dim-gray/20 dark:border-white/10 z-20 flex items-center justify-center">
                         <div className="w-1 h-1 rounded-full bg-accent" />
                     </div>
-                    <TeamNode name="John Christian" role="Fullstack • Machine Learning" />
+
+                    <div className="flex flex-wrap justify-center gap-4 md:grid md:grid-cols-3 md:gap-8 md:justify-items-center">
+                        {coreTeam.map((member) => (
+                            <div key={member.name} className="relative">
+                                <div className="hidden md:block absolute bottom-full left-1/2 -translate-x-1/2 w-px h-8 bg-dim-gray/20 dark:bg-white/10" />
+                                <TeamNode name={member.name} role={member.role} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

@@ -10,7 +10,7 @@ const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
 
 export const metadata: Metadata = {
   title: "Daero Labs | Build What's Next",
-  description: "Daero Labs is a small, focused software studio building modern web and mobile applications with clean architecture and future-ready tools.",
+  description: "Daero Labs is a small, focused software studio building modern web, mobile, CRM, and desktop applications with clean architecture and future-ready tools.",
 };
 
 export default function RootLayout({
