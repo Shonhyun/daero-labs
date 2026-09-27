@@ -104,44 +104,46 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card styling without Card's built-in padding, so the image runs edge to edge */}
-          <div className="bg-white dark:bg-onyx/20 border border-black/5 dark:border-white/5 rounded-2xl shadow-sm overflow-hidden grid md:grid-cols-2">
-            <div className="relative aspect-[3/2] md:aspect-auto md:min-h-[420px] bg-black">
-              <Image
-                src="/work/undergrounds.webp"
-                alt="Undergrounds REE Review Center logo"
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="p-8 md:p-12 flex flex-col justify-center">
-              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-dim-gray dark:text-silver mb-4">
-                Mobile App • Web Platform
-              </p>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">Undergrounds REE Review Center</h3>
+          {/* Two columns so each project takes half the width */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card noHover className="flex flex-col">
+              <div className="flex items-center gap-5 mb-6">
+                <Image
+                  src="/work/undergrounds-icon.webp"
+                  alt="Undergrounds app icon"
+                  width={72}
+                  height={72}
+                  className="w-16 h-16 md:w-[72px] md:h-[72px] rounded-2xl shadow-md shrink-0"
+                />
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold leading-tight">Undergrounds REE Review Center</h3>
+                  <p className="mt-1 text-xs uppercase tracking-[0.2em] font-semibold text-dim-gray dark:text-silver">
+                    Mobile App
+                  </p>
+                </div>
+              </div>
+
               <p className="text-dim-gray dark:text-silver leading-relaxed mb-6">
                 An all-in-one review platform for the Registered Electrical Engineering board exam. Students
                 get live online classes, structured MATH, ESAS, and EE modules, mock boards, and a mobile app
                 with offline mode, smart progress analytics, a built-in scientific calculator, and XP-based
                 rankings that make reviewing feel like a game.
               </p>
-              <ul className="flex flex-wrap gap-2 mb-8">
-                {["iOS & Android", "Offline Mode", "Smart Analytics", "Gamification", "Creator Marketplace"].map((tag) => (
-                  <li key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-rich-black/5 dark:bg-white/10 text-rich-black dark:text-white-smoke">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="https://undergroundsree-com.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full bg-accent text-accent-fg font-semibold hover:bg-accent/90 transition-all"
-              >
-                Visit Site <ArrowUpRight size={18} />
-              </a>
-            </div>
+
+              <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/10">
+                <p className="text-sm text-dim-gray dark:text-silver mb-4">
+                  Visit the website to see the latest updates from Undergrounds.
+                </p>
+                <a
+                  href="https://undergroundsree-com.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-fg text-sm font-semibold hover:bg-accent/90 transition-all"
+                >
+                  Visit Website <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </Card>
           </div>
         </div>
       </section>

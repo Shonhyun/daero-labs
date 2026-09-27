@@ -16,10 +16,10 @@ const footerLinks = {
     { name: "Careers", href: "/careers" },
     { name: "Contact", href: "/contact" },
   ],
+  // TODO: replace "#" with the Daero Labs Facebook page and Instagram URLs.
   social: [
-    { name: "Twitter", href: "#" },
-    { name: "LinkedIn", href: "#" },
-    { name: "GitHub", href: "#" },
+    { name: "Facebook", href: "#" },
+    { name: "Instagram", href: "#" },
   ],
 }
 
@@ -80,8 +80,8 @@ export function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-dim-gray">
           <p>© {new Date().getFullYear()} Daero Labs. All rights reserved.</p>
           <div className="flex gap-6">
-             <Link href="#" className="hover:text-silver transition-colors">Privacy Policy</Link>
-             <Link href="#" className="hover:text-silver transition-colors">Terms of Service</Link>
+             <Link href="/privacy" className="hover:text-silver transition-colors">Privacy Policy</Link>
+             <Link href="/terms" className="hover:text-silver transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

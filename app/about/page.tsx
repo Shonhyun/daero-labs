@@ -2,7 +2,7 @@ import { Card } from "@/components/Card";
 
 const coreTeam = [
   { name: "James Heaven", role: "CMO • Marketing" },
-  { name: "John Christian", role: "Fullstack Developer" },
+  { name: "John Christian", role: "Web Developer" },
   { name: "Kurt Viray", role: "Fullstack Developer" },
 ];
 
@@ -49,9 +49,9 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-16 text-center">Meet the Builders</h2>
             
             <div className="flex flex-col items-center">
-                {/* Level 1: CEO */}
+                {/* Level 1: Founder */}
                 <div className="relative z-10">
-                    <TeamNode name="Shoun Ramos" role="CEO • Tech Lead" />
+                    <TeamNode name="Shoun Ramos" role="Founder • Tech Lead" />
                     {/* Vertical line down from center */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 w-px h-12 bg-dim-gray/20 dark:bg-white/10" />
                 </div>
