@@ -24,28 +24,28 @@ export function IntroHero() {
       {/* Dynamic Floating Background Orbs */}
       <motion.div
         animate={{
-          x: [0, 100, -50, 0],
-          y: [0, -100, 50, 0],
-          scale: [1, 1.2, 0.8, 1]
+          x: [0, 60, -30, 0],
+          y: [0, -60, 30, 0],
+          scale: [1, 1.15, 0.9, 1]
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-0 right-0 -z-10 w-[600px] h-[600px] bg-dim-gray/15 rounded-full blur-[120px] opacity-60 transform-gpu will-change-transform"
+        className="absolute top-0 right-0 -z-10 w-[280px] sm:w-[450px] md:w-[600px] h-[280px] sm:h-[450px] md:h-[600px] bg-dim-gray/15 rounded-full blur-[60px] sm:blur-[90px] md:blur-[120px] opacity-60 transform-gpu will-change-transform"
       />
       <motion.div
         animate={{
-          x: [0, -100, 50, 0],
-          y: [0, 100, -50, 0],
-          scale: [1, 1.5, 0.9, 1]
+          x: [0, -60, 30, 0],
+          y: [0, 60, -30, 0],
+          scale: [1, 1.25, 0.95, 1]
         }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-0 left-0 -z-10 w-[600px] h-[600px] bg-silver/15 rounded-full blur-[120px] opacity-60 transform-gpu will-change-transform"
+        className="absolute bottom-0 left-0 -z-10 w-[280px] sm:w-[450px] md:w-[600px] h-[280px] sm:h-[450px] md:h-[600px] bg-silver/15 rounded-full blur-[60px] sm:blur-[90px] md:blur-[120px] opacity-60 transform-gpu will-change-transform"
       />
 
       {/* Main Text */}
       <div
         role="img"
         aria-label="Daero Labs"
-        className="text-[10vw] sm:text-[11vw] font-display tracking-tighter text-rich-black dark:text-white-smoke leading-none z-10 text-center flex items-baseline justify-center w-full max-w-full px-4"
+        className="text-[10vw] sm:text-[11vw] font-display tracking-tighter text-rich-black dark:text-white-smoke leading-none z-10 text-center flex items-baseline justify-center w-full max-w-full px-4 [transform-style:preserve-3d] transform-gpu"
       >
         {letters.map(({ char, light }, index) => (
           <motion.span

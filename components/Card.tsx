@@ -16,10 +16,12 @@ export function Card({ children, className = "", noHover = false }: CardProps) {
       className={`
         bg-white dark:bg-onyx/20 
         backdrop-blur-sm
+        [-webkit-backdrop-filter:blur(8px)]
         border border-black/5 dark:border-white/5 
         rounded-2xl p-8 
         shadow-sm hover:shadow-xl dark:shadow-none
         transition-shadow duration-300
+        transform-gpu
         ${className}
       `}
     >

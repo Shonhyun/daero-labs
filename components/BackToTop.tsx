@@ -34,7 +34,7 @@ export function BackToTop() {
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       onClick={scrollToTop}
-      className="fixed bottom-8 right-8 z-50 p-4 rounded-full bg-accent text-accent-fg shadow-lg hover:shadow-xl hover:scale-110 transition-transform duration-300 flex items-center justify-center cursor-pointer"
+      className="fixed bottom-[max(5.5rem,calc(env(safe-area-inset-bottom)+5rem))] right-[max(1.5rem,calc(env(safe-area-inset-right)+1rem))] z-40 p-3.5 sm:p-4 rounded-full bg-accent text-accent-fg shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-transform duration-300 flex items-center justify-center cursor-pointer"
       aria-label="Scroll to top"
     >
       <ArrowUp className="w-6 h-6" />

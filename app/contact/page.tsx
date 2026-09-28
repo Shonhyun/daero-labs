@@ -92,7 +92,7 @@ export default function Contact() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors"
+                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors text-base"
                                 placeholder="John Doe"
                             />
                         </div>
@@ -104,7 +104,7 @@ export default function Contact() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors"
+                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors text-base"
                                 placeholder="john@example.com"
                             />
                         </div>
@@ -118,7 +118,7 @@ export default function Contact() {
                             value={formData.message}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors resize-none"
+                            className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors resize-none text-base"
                             placeholder="Tell us about your project..."
                         />
                     </div>

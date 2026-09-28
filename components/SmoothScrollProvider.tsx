@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 
 let lenisInstance: Lenis | null = null;
 
@@ -13,16 +14,27 @@ export function smoothScrollToTop() {
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
   } else {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.08,
+      lerp: 0.1,
       wheelMultiplier: 1,
-      touchMultiplier: 2,
+      touchMultiplier: 1,
+      syncTouch: false,
+      allowNestedScroll: true,
+      prevent: (node) => {
+        if (!node || (node as any).nodeType !== 1) return false;
+        const el = node as Element;
+        return (
+          el.hasAttribute("data-lenis-prevent") ||
+          el.closest?.("[data-lenis-prevent]") !== null ||
+          el.closest?.(".lenis-prevent") !== null
+        );
+      },
     });
     lenisInstance = lenis;
 

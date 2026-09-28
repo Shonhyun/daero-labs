@@ -34,6 +34,18 @@
     --accent-fg: #0A0A0A;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     background-color: var(--background);
     color: var(--foreground);
@@ -41,6 +53,17 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Eliminate 300ms tap delay on mobile iOS / Android */
+a, button, input, textarea, select {
+    touch-action: manipulation;
+}
+
+/* Prevent iOS Safari from auto-zooming on input focus */
+input, textarea, select {
+    font-size: 16px;
 }
 
 h1, h2, h3 {
@@ -52,7 +75,7 @@ h1, h2, h3 {
     color: var(--accent-fg);
 }
 
-/* Glassmorphism utility */
+/* Glassmorphism utility with WebKit support */
 .glass {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
@@ -61,4 +84,37 @@ h1, h2, h3 {
 
 .dark .glass {
     background: rgba(10, 10, 10, 0.7);
+}
+
+.backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-xl {
+    -webkit-backdrop-filter: blur(24px);
+}
+
+/* Custom scrollbar & wheel scroll handling for chat widget */
+.chat-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(140, 140, 140, 0.35) transparent;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.chat-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+    background: rgba(140, 140, 140, 0.3);
+    border-radius: 9999px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(140, 140, 140, 0.6);
 }

@@ -32,6 +32,18 @@ export function Navbar() {
     setIsMobileMenuOpen(false)
   }, [pathname])
 
+  // Lock body scroll on iOS/mobile when menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isMobileMenuOpen])
+
   // Fade Navbar in on scroll (Homepage only)
   const navOpacity = useTransform(scrollY, [300, 600], [0, 1])
   const navY = useTransform(scrollY, [300, 600], [-20, 0])
@@ -43,7 +55,7 @@ export function Navbar() {
     <>
       <motion.nav
         style={{ opacity: finalOpacity, y: finalY }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-[max(1.5rem,env(safe-area-inset-top))] pointer-events-none"
       >
         <motion.div
           layout
@@ -113,20 +125,25 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-white/95 dark:bg-rich-black/95 backdrop-blur-xl md:hidden flex flex-col pt-32 px-8"
+            className="fixed inset-0 z-40 bg-white/95 dark:bg-rich-black/95 backdrop-blur-xl md:hidden flex flex-col pt-32 pb-[max(2rem,env(safe-area-inset-bottom))] px-8 min-h-[100dvh] overflow-y-auto"
           >
             <div className="flex flex-col gap-6 text-2xl font-semibold">
                {navLinks.map((link) => (
                   <Link 
                     key={link.name} 
                     href={link.href}
-                    className="text-rich-black dark:text-white-smoke"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-rich-black dark:text-white-smoke active:opacity-70 transition-opacity"
                   >
                     {link.name}
                   </Link>
                ))}
                <hr className="border-dim-gray/20 my-4" />
-               <Link href="/contact" className="text-accent">
+               <Link 
+                 href="/contact" 
+                 onClick={() => setIsMobileMenuOpen(false)}
+                 className="text-accent active:opacity-70 transition-opacity"
+               >
                   Start a Project
                </Link>
             </div>

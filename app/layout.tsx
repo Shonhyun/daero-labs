@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme-provider";
@@ -6,9 +6,20 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { BackToTop } from "@/components/BackToTop";
+import { AIChatWidget } from "@/components/AIChatWidget";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F5F5F5" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Daero Labs | Build What's Next",
@@ -29,7 +40,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="flex flex-col min-h-screen">
+            <div className="flex flex-col min-h-screen min-h-dvh">
               <Navbar />
               <main className="flex-grow">
                 <SmoothScrollProvider>
@@ -38,6 +49,7 @@ export default function RootLayout({
               </main>
               <Footer />
               <BackToTop />
+              <AIChatWidget />
             </div>
         </ThemeProvider>
       </body>

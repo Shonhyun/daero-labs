@@ -1,5 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { IntroHero } from "@/components/IntroHero";
+import { StatsBar } from "@/components/StatsBar";
 import { Card } from "@/components/Card";
 import Link from "next/link";
 import Image from "next/image";
@@ -55,6 +56,8 @@ export default function Home() {
       <IntroHero />
 
       <Hero />
+
+      <StatsBar />
 
       {/* Services Preview */}
       <section className="py-24 px-6">
