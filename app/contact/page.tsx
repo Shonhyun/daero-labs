@@ -1,66 +1,64 @@
-"use client"
-
 import { Card } from "@/components/Card";
-import { ArrowRight, Mail, MapPin } from "lucide-react";
-import React from "react";
+import { ArrowRight, ArrowUpRight, CalendarDays, Clock, Mail, MapPin } from "lucide-react";
+
+const CAL_URL = "https://cal.com/daero-labs-dtrbgh";
+
+interface Meeting {
+  title: string;
+  duration: string;
+  description: string;
+  slug: string;
+}
+
+// Slugs must match the event type URLs on Cal.com.
+// The rest of the event types are listed on the Cal.com profile page.
+const meetings: Meeting[] = [
+  {
+    title: "Start a Project",
+    duration: "30 min",
+    description: "Ready to build? Let's talk budget, timeline, and next steps.",
+    slug: "15min",
+  },
+  {
+    title: "Meet the Team",
+    duration: "20 min",
+    description: "Get to know who we are and how we work.",
+    slug: "meet-the-team",
+  },
+  {
+    title: "Project Consultation",
+    duration: "45 min",
+    description: "Map out features, users, and technical requirements.",
+    slug: "30min",
+  },
+];
 
 export default function Contact() {
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-  const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.id]: e.target.value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) throw new Error("Failed to send message");
-
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setStatus("idle"), 5000);
-    } catch (error) {
-      console.error(error);
-      setStatus("error");
-    }
-  };
-
   return (
     <div className="pt-32 pb-24 px-6 md:pt-48">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-20">
         <div className="md:w-1/2">
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">Let's Talk</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">Let&apos;s Talk</h1>
             <p className="text-xl text-dim-gray dark:text-silver leading-relaxed mb-12">
-                Have a project in mind? We'd love to hear about it. Every inquiry is personally reviewed by our founders.
+                Have a project in mind? Book a call at a time that works for you. Every meeting is handled personally by our founders.
             </p>
 
             <div className="space-y-8">
                 <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-dim-gray/5 dark:bg-white/5 flex items-center justify-center">
+                        <CalendarDays size={20} className="text-rich-black dark:text-white-smoke" />
+                    </div>
+                    <div>
+                        <p className="text-sm text-dim-gray dark:text-silver">Available</p>
+                        <p className="text-lg font-semibold">Monday to Friday, online</p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-dim-gray/5 dark:bg-white/5 flex items-center justify-center">
                         <Mail size={20} className="text-rich-black dark:text-white-smoke" />
                     </div>
                     <div>
-                        <p className="text-sm text-dim-gray dark:text-silver">Email us at</p>
+                        <p className="text-sm text-dim-gray dark:text-silver">Prefer email?</p>
                         <a href="mailto:daerolabs@gmail.com" className="text-lg font-semibold hover:underline underline-offset-4">daerolabs@gmail.com</a>
                     </div>
                 </div>
@@ -74,74 +72,51 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
-            
+
              <p className="mt-12 text-sm text-dim-gray dark:text-silver">
-                We usually respond within 24 hours.
+                We usually reply to emails within 24 hours.
             </p>
         </div>
 
         <div className="md:w-1/2">
-            <Card className="p-8 md:p-10">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label htmlFor="name" className="text-sm font-medium">Name</label>
-                            <input 
-                                type="text" 
-                                id="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors text-base"
-                                placeholder="John Doe"
-                            />
-                        </div>
-                        <div className="space-y-2">
-                             <label htmlFor="email" className="text-sm font-medium">Email</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors text-base"
-                                placeholder="john@example.com"
-                            />
-                        </div>
-                    </div>
-                    
-                    <div className="space-y-2">
-                        <label htmlFor="message" className="text-sm font-medium">Message</label>
-                        <textarea 
-                            id="message"
-                            rows={6} 
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-3 rounded-lg bg-dim-gray/5 dark:bg-white/5 border border-transparent focus:border-accent outline-none transition-colors resize-none text-base"
-                            placeholder="Tell us about your project..."
-                        />
-                    </div>
+            <Card noHover className="p-6 md:p-10">
+                <h2 className="text-2xl font-bold mb-2">Book a Meeting</h2>
+                <p className="text-dim-gray dark:text-silver mb-8">
+                    Pick the type of call that fits what you need.
+                </p>
 
-                    <button 
-                        type="submit"
-                        disabled={status === "loading"}
-                        className="w-full py-4 rounded-full bg-rich-black text-white dark:bg-white-smoke dark:text-rich-black font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        {status === "loading" ? "Sending..." : "Send Message"} <ArrowRight size={20} />
-                    </button>
+                <ul className="space-y-3 mb-8">
+                    {meetings.map((meeting) => (
+                        <li key={meeting.slug}>
+                            <a
+                                href={`${CAL_URL}/${meeting.slug}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-center gap-4 p-4 rounded-xl bg-dim-gray/5 dark:bg-white/5 border border-transparent hover:border-accent transition-colors"
+                            >
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                        <span className="font-semibold">{meeting.title}</span>
+                                        <span className="inline-flex items-center gap-1 text-xs text-dim-gray dark:text-silver">
+                                            <Clock size={12} /> {meeting.duration}
+                                        </span>
+                                    </div>
+                                    <p className="text-sm text-dim-gray dark:text-silver mt-1">{meeting.description}</p>
+                                </div>
+                                <ArrowUpRight size={18} className="shrink-0 text-dim-gray dark:text-silver group-hover:text-accent transition-colors" />
+                            </a>
+                        </li>
+                    ))}
+                </ul>
 
-                    {status === "success" && (
-                        <p className="text-green-600 dark:text-green-400 text-center font-medium">
-                            Message sent successfully! We'll get back to you soon.
-                        </p>
-                    )}
-                    {status === "error" && (
-                        <p className="text-red-600 dark:text-red-400 text-center font-medium">
-                            Failed to send message. Please try again or email us directly.
-                        </p>
-                    )}
-                </form>
+                <a
+                    href={CAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 rounded-full bg-rich-black text-white dark:bg-white-smoke dark:text-rich-black font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                >
+                    See All Available Times <ArrowRight size={20} />
+                </a>
             </Card>
         </div>
       </div>
