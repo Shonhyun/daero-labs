@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/Card";
 
 interface TeamMember {
@@ -59,7 +60,7 @@ export default function About() {
           <div className="flex flex-col items-center">
             {/* Level 1: Founder */}
             <div className="relative z-10 flex justify-center">
-              <TeamNode name="Shoun Ramos" role="Founder • Tech Lead" photo="/team/shoun.jpg" />
+              <TeamNode name="Shoun Ramos" role="Founder • Tech Lead" photo="/team/shoun.jpg" link="https://shounhyun.vercel.app/" />
               {/* Vertical line down from center */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-px h-8 sm:h-12 bg-dim-gray/20 dark:bg-white/10" />
             </div>
@@ -92,23 +93,28 @@ export default function About() {
 function TeamNode({ name, role, photo, link }: { name: string; role: string; photo?: string; link?: string }) {
   const content = (
     <div
-      className={`flex flex-col items-center justify-center bg-white dark:bg-onyx/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-black/5 dark:border-white/5 shadow-sm hover:shadow-md transition-all duration-300 w-full max-w-[108px] sm:max-w-[160px] md:max-w-[176px] sm:w-40 md:w-44 h-36 sm:h-40 text-center ${
+      className={`flex flex-col items-center bg-white dark:bg-onyx/30 px-2 pt-3.5 pb-3 sm:px-3 sm:pt-5 sm:pb-4 rounded-xl sm:rounded-2xl border border-black/5 dark:border-white/5 shadow-sm hover:shadow-md transition-all duration-300 w-full max-w-[108px] sm:max-w-[160px] md:max-w-[176px] sm:w-40 md:w-44 h-40 sm:h-48 text-center ${
         link ? "cursor-pointer hover:border-black/20 dark:hover:border-white/20 active:scale-98" : ""
       }`}
     >
-      <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-gradient-to-br from-dim-gray/10 to-dim-gray/20 dark:from-white/5 dark:to-white/10 ring-2 ring-black/5 dark:ring-white/10 mb-1.5 sm:mb-2.5 flex items-center justify-center text-xs sm:text-base font-bold text-dim-gray dark:text-silver shrink-0">
+      <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-gradient-to-br from-dim-gray/10 to-dim-gray/20 dark:from-white/5 dark:to-white/10 ring-2 ring-black/5 dark:ring-white/10 mb-2 sm:mb-3 flex items-center justify-center text-xs sm:text-base font-bold text-dim-gray dark:text-silver shrink-0">
         {photo ? (
           <Image src={photo} alt={name} fill sizes="64px" className="object-cover" />
         ) : (
           name.charAt(0)
         )}
       </div>
-      <span className="font-bold text-[11px] sm:text-sm md:text-base text-rich-black dark:text-white-smoke leading-tight line-clamp-1">
+      <span className="font-bold text-xs sm:text-sm md:text-base text-rich-black dark:text-white-smoke leading-snug line-clamp-1">
         {name}
       </span>
-      <span className="text-[8px] sm:text-[10px] md:text-[11px] text-dim-gray dark:text-silver uppercase tracking-wider font-medium mt-0.5 sm:mt-1 leading-tight">
+      <span className="text-[9px] sm:text-[10px] md:text-[11px] text-dim-gray dark:text-silver uppercase tracking-wide font-medium mt-1 leading-snug">
         {role}
       </span>
+      {link && (
+        <span className="mt-auto pt-2 inline-flex items-center gap-0.5 text-[10px] sm:text-xs text-dim-gray/70 dark:text-silver/60 group-hover:text-accent underline-offset-2 group-hover:underline transition-colors">
+          Portfolio <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+        </span>
+      )}
     </div>
   );
 
@@ -118,7 +124,7 @@ function TeamNode({ name, role, photo, link }: { name: string; role: string; pho
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full flex justify-center no-underline cursor-pointer"
+        className="group w-full flex justify-center no-underline cursor-pointer"
       >
         {content}
       </a>
