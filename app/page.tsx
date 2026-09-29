@@ -50,6 +50,16 @@ const undergroundsFeatures = [
   "Built-in Calculator",
 ];
 
+const apexFeatures = [
+  "Price Estimator",
+  "Before & After Slider",
+  "Treatment Catalog",
+  "Appointment Booking",
+  "Vehicle Tier Pricing",
+  "Laravel & REST API",
+  "Luxury Dark UI",
+];
+
 export default function Home() {
   return (
     <>
@@ -163,6 +173,56 @@ export default function Home() {
                 </p>
                 <a
                   href="https://undergroundsree-com.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-fg text-sm font-semibold hover:bg-accent/90 transition-all"
+                >
+                  Visit Website <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </Card>
+
+            <Card noHover className="flex flex-col">
+              <div className="flex items-center gap-5 mb-6">
+                <Image
+                  src="/work/apex-brand.png"
+                  alt="Apex Auto Spa logo"
+                  width={72}
+                  height={72}
+                  className="w-16 h-16 md:w-[72px] md:h-[72px] rounded-2xl shadow-md shrink-0 object-cover"
+                />
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold leading-tight">Apex Auto Spa</h3>
+                  <p className="mt-1 text-xs uppercase tracking-[0.2em] font-semibold text-dim-gray dark:text-silver">
+                    Web Platform
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-dim-gray dark:text-silver leading-relaxed mb-6">
+                A high-converting luxury automotive detailing web platform designed for premier studios.
+                Features an interactive 2-step price estimator by vehicle class, a Before &amp; After paint
+                restoration transformation slider, a curated treatment catalog, and a streamlined
+                appointment booking flow.
+              </p>
+
+              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-dim-gray dark:text-silver mb-3">
+                Key Features
+              </p>
+              <ul className="flex flex-wrap gap-2 mb-8">
+                {apexFeatures.map((feature) => (
+                  <li key={feature} className="px-3 py-1 rounded-full text-xs font-medium bg-rich-black/5 dark:bg-white/10 text-rich-black dark:text-white-smoke">
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/10">
+                <p className="text-sm text-dim-gray dark:text-silver mb-4">
+                  Visit the website to explore the live detailing platform.
+                </p>
+                <a
+                  href="https://apexautospa-nine.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-fg text-sm font-semibold hover:bg-accent/90 transition-all"
