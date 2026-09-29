@@ -1,15 +1,17 @@
+import Image from "next/image";
 import { Card } from "@/components/Card";
 
 interface TeamMember {
   name: string;
   role: string;
+  photo?: string;
   link?: string;
 }
 
 const coreTeam: TeamMember[] = [
-  { name: "James Heaven", role: "CMO • Marketing" },
-  { name: "John Christian", role: "Web Developer" },
-  { name: "Dylan Ramos", role: "Fullstack Developer", link: "https://www.dylanramos.site" },
+  { name: "James Heaven", role: "CMO • Marketing", photo: "/team/james.jpg" },
+  { name: "John Christian", role: "Web Developer", photo: "/team/john.jpg" },
+  { name: "Dylan Ramos", role: "Fullstack Developer", photo: "/team/dylan.jpg", link: "https://www.dylanramos.site" },
 ];
 
 export default function About() {
@@ -57,7 +59,7 @@ export default function About() {
           <div className="flex flex-col items-center">
             {/* Level 1: Founder */}
             <div className="relative z-10 flex justify-center">
-              <TeamNode name="Shoun Ramos" role="Founder • Tech Lead" />
+              <TeamNode name="Shoun Ramos" role="Founder • Tech Lead" photo="/team/shoun.jpg" />
               {/* Vertical line down from center */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-px h-8 sm:h-12 bg-dim-gray/20 dark:bg-white/10" />
             </div>
@@ -75,7 +77,7 @@ export default function About() {
                 {coreTeam.map((member) => (
                   <div key={member.name} className="relative flex justify-center w-full">
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-px h-8 bg-dim-gray/20 dark:bg-white/10" />
-                    <TeamNode name={member.name} role={member.role} link={member.link} />
+                    <TeamNode name={member.name} role={member.role} photo={member.photo} link={member.link} />
                   </div>
                 ))}
               </div>
@@ -87,15 +89,19 @@ export default function About() {
   );
 }
 
-function TeamNode({ name, role, link }: { name: string; role: string; link?: string }) {
+function TeamNode({ name, role, photo, link }: { name: string; role: string; photo?: string; link?: string }) {
   const content = (
     <div
       className={`flex flex-col items-center justify-center bg-white dark:bg-onyx/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-black/5 dark:border-white/5 shadow-sm hover:shadow-md transition-all duration-300 w-full max-w-[108px] sm:max-w-[160px] md:max-w-[176px] sm:w-40 md:w-44 h-36 sm:h-40 text-center ${
         link ? "cursor-pointer hover:border-black/20 dark:hover:border-white/20 active:scale-98" : ""
       }`}
     >
-      <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-dim-gray/10 to-dim-gray/20 dark:from-white/5 dark:to-white/10 mb-1.5 sm:mb-2.5 flex items-center justify-center text-xs sm:text-base font-bold text-dim-gray dark:text-silver shrink-0">
-        {name.charAt(0)}
+      <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-gradient-to-br from-dim-gray/10 to-dim-gray/20 dark:from-white/5 dark:to-white/10 ring-2 ring-black/5 dark:ring-white/10 mb-1.5 sm:mb-2.5 flex items-center justify-center text-xs sm:text-base font-bold text-dim-gray dark:text-silver shrink-0">
+        {photo ? (
+          <Image src={photo} alt={name} fill sizes="64px" className="object-cover" />
+        ) : (
+          name.charAt(0)
+        )}
       </div>
       <span className="font-bold text-[11px] sm:text-sm md:text-base text-rich-black dark:text-white-smoke leading-tight line-clamp-1">
         {name}
