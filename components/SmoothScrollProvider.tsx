@@ -18,6 +18,15 @@ export function smoothScrollToTop() {
   }
 }
 
+/** Smoothly scroll an element into view, leaving room for the fixed navbar. */
+export function smoothScrollToElement(element: HTMLElement, offset = -96) {
+  if (lenisInstance) {
+    lenisInstance.scrollTo(element, { offset, duration: 1 });
+  } else {
+    window.scrollTo({ top: element.getBoundingClientRect().top + window.scrollY + offset, behavior: "smooth" });
+  }
+}
+
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({

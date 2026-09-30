@@ -10,8 +10,8 @@ interface TeamMember {
 }
 
 const coreTeam: TeamMember[] = [
-  { name: "James Heaven", role: "CMO • Marketing", photo: "/team/james.jpg" },
-  { name: "John Christian", role: "Web Developer", photo: "/team/john.jpg" },
+  { name: "James Heaven", role: "CMO • Marketing", photo: "/team/james.jpg", link: "https://james-heaven.netlify.app/" },
+  { name: "John Christian", role: "Web Developer", photo: "/team/john.jpg", link: "https://johnchristian.vercel.app/" },
   { name: "Dylan Ramos", role: "Fullstack Developer", photo: "/team/dylan.jpg", link: "https://www.dylanramos.site" },
 ];
 
