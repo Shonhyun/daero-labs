@@ -1,7 +1,6 @@
 import { Card } from "@/components/Card";
+import { CAL_URL } from "@/lib/booking";
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock, Mail, MapPin } from "lucide-react";
-
-const CAL_URL = "https://cal.com/daero-labs-dtrbgh";
 
 interface Meeting {
   title: string;
