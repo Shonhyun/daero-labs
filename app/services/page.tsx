@@ -1,4 +1,5 @@
 import { Card } from "@/components/Card";
+import { EstimatorTeaser } from "@/components/EstimatorTeaser";
 import { Code, Smartphone, Palette, Users, Monitor, CheckCircle2 } from "lucide-react";
 
 const services = [
@@ -93,6 +94,10 @@ export default function Services() {
                 </div>
             ))}
         </div>
+      </div>
+
+      <div className="-mx-6 mt-16 md:mt-24">
+        <EstimatorTeaser />
       </div>
     </div>
   );

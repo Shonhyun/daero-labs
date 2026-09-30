@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { calculateEstimate, formatUSD, getPlatform, platforms, type PriceRange } from '@/lib/estimator';
+import { calculateEstimate, formatPHP, getPlatform, platforms, type PriceRange } from '@/lib/estimator';
 
 const MAX_CUSTOM_FEATURES = 8;
-const CUSTOM_FEATURE_BOUNDS = { min: 300, max: 15000 };
+const CUSTOM_FEATURE_BOUNDS = { min: 2_000, max: 20_000 };
 
 interface CustomFeature extends PriceRange {
     name: string;
@@ -36,27 +36,30 @@ function parseCustomFeatures(text: unknown): string[] {
 }
 
 const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
-const roundTo100 = (n: number) => Math.round(n / 100) * 100;
+const roundTo500 = (n: number) => Math.round(n / 500) * 500;
 
 function buildPrompt(platformNames: string[], lineItems: ReturnType<typeof calculateEstimate>['lineItems'], custom: string[]) {
-    const priced = lineItems.map((i) => `- [${i.platform}] ${i.name}: ${formatUSD(i.min)}–${formatUSD(i.max)}`).join('\n');
+    const priced = lineItems
+        .filter((i) => i.kind === 'base' || i.kind === 'feature')
+        .map((i) => `- [${i.platform}] ${i.name}: ${formatPHP(i.min)}–${formatPHP(i.max)}`)
+        .join('\n');
     const customList = custom.length ? custom.map((c) => `- ${c}`).join('\n') : '(none)';
 
-    return `You are the pricing assistant for Daero Labs, a small software studio in the Philippines.
+    return `You are the pricing assistant for Daero Labs, a startup software studio in the Philippines with mostly Filipino clients and fair, startup-friendly prices.
 A visitor used our cost estimator. Platforms: ${platformNames.join(', ')}.
 
-Already priced from our rate card (USD):
+Already priced from our rate card (Philippine pesos):
 ${priced}
 
 Custom features the visitor typed in (not on our rate card):
 ${customList}
 
 Tasks:
-1. Price each custom feature as a USD range that is consistent with the rate card above (similar complexity → similar price). If an item is not a software feature or is unclear, skip it.
+1. Price each custom feature as a peso range that is consistent with the rate card above (similar complexity → similar price, usually ₱2,000–₱12,000). If an item is not a software feature or is unclear, skip it.
 2. Write a 2–3 sentence summary for the visitor: what kind of system this is, what drives the cost, and one tip to keep costs down. Friendly and plain English. Do not repeat the total price.
 
-Reply with ONLY this JSON, no markdown:
-{"summary": "...", "custom": [{"name": "short feature name", "min": 1000, "max": 2000}]}`;
+Reply with ONLY this JSON, no markdown, amounts as plain numbers in pesos:
+{"summary": "...", "custom": [{"name": "short feature name", "min": 3000, "max": 5000}]}`;
 }
 
 async function askAI(prompt: string): Promise<{ summary?: string; custom?: CustomFeature[] } | null> {
@@ -104,8 +107,8 @@ function sanitizeCustom(raw: unknown): CustomFeature[] {
         .filter((c) => c && typeof c.name === 'string' && Number.isFinite(c.min) && Number.isFinite(c.max))
         .slice(0, MAX_CUSTOM_FEATURES)
         .map((c) => {
-            const min = roundTo100(clamp(Math.min(c.min, c.max), CUSTOM_FEATURE_BOUNDS.min, CUSTOM_FEATURE_BOUNDS.max));
-            const max = roundTo100(clamp(Math.max(c.min, c.max), min, CUSTOM_FEATURE_BOUNDS.max));
+            const min = roundTo500(clamp(Math.min(c.min, c.max), CUSTOM_FEATURE_BOUNDS.min, CUSTOM_FEATURE_BOUNDS.max));
+            const max = roundTo500(clamp(Math.max(c.min, c.max), min, CUSTOM_FEATURE_BOUNDS.max));
             return { name: c.name.slice(0, 80), min, max };
         });
 }
