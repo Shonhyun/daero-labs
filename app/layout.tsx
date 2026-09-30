@@ -40,7 +40,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="flex flex-col min-h-screen min-h-dvh">
+            <div className="flex flex-col min-h-screen min-h-svh">
               <Navbar />
               <main className="flex-grow">
                 <SmoothScrollProvider>

@@ -16,12 +16,15 @@ export function IntroHero() {
   const opacityFade = useTransform(scrollY, [0, 600], [1, 0]);
   const scaleFade = useTransform(scrollY, [0, 600], [1, 0.9]);
 
+  // svh instead of dvh: dvh changes as iOS Safari's toolbar shows/hides, which re-lays out the page mid-scroll.
   return (
     <motion.section
       style={{ y: yParallax, opacity: opacityFade, scale: scaleFade }}
-      className="h-[100dvh] w-full flex flex-col items-center justify-center relative overflow-hidden"
+      className="h-[100svh] w-full flex flex-col items-center justify-center relative overflow-hidden"
     >
-      {/* Dynamic Floating Background Orbs */}
+      {/* Dynamic Floating Background Orbs.
+          Soft edges come from a radial gradient, not filter: blur(). Animating a blurred element makes
+          iOS Safari re-render the blur every frame, which caused scroll lag on iPhones. */}
       <motion.div
         animate={{
           x: [0, 60, -30, 0],
@@ -29,7 +32,7 @@ export function IntroHero() {
           scale: [1, 1.15, 0.9, 1]
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-0 right-0 -z-10 w-[280px] sm:w-[450px] md:w-[600px] h-[280px] sm:h-[450px] md:h-[600px] bg-dim-gray/15 rounded-full blur-[60px] sm:blur-[90px] md:blur-[120px] opacity-60 transform-gpu will-change-transform"
+        className="absolute -top-16 -right-16 -z-10 w-[400px] sm:w-[600px] md:w-[800px] h-[400px] sm:h-[600px] md:h-[800px] rounded-full bg-[radial-gradient(closest-side,rgb(100_100_100/0.15),transparent)] opacity-60"
       />
       <motion.div
         animate={{
@@ -38,7 +41,7 @@ export function IntroHero() {
           scale: [1, 1.25, 0.95, 1]
         }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-0 left-0 -z-10 w-[280px] sm:w-[450px] md:w-[600px] h-[280px] sm:h-[450px] md:h-[600px] bg-silver/15 rounded-full blur-[60px] sm:blur-[90px] md:blur-[120px] opacity-60 transform-gpu will-change-transform"
+        className="absolute -bottom-16 -left-16 -z-10 w-[400px] sm:w-[600px] md:w-[800px] h-[400px] sm:h-[600px] md:h-[800px] rounded-full bg-[radial-gradient(closest-side,rgb(181_181_181/0.15),transparent)] opacity-60"
       />
 
       {/* Main Text */}

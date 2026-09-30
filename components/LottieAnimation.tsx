@@ -11,6 +11,10 @@ interface LottieAnimationProps {
   loop?: boolean;
 }
 
+// iPhones report a pixel ratio of 3, so the canvas would redraw 9x the pixels every frame.
+// 2x looks the same at these sizes and is much cheaper. Offscreen animations stay paused.
+const RENDER_CONFIG = { devicePixelRatio: 2, freezeOnOffscreen: true };
+
 export const LottieAnimation = ({ src, className, autoplay = true, loop = true }: LottieAnimationProps) => {
   // The canvas has no intrinsic size, so size it to the animation's own aspect ratio once loaded.
   const [aspectRatio, setAspectRatio] = useState(1);
@@ -29,6 +33,7 @@ export const LottieAnimation = ({ src, className, autoplay = true, loop = true }
         loop={loop}
         autoplay={autoplay}
         dotLottieRefCallback={handleRef}
+        renderConfig={RENDER_CONFIG}
         style={{ width: "100%", aspectRatio }}
       />
     </div>

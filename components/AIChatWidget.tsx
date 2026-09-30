@@ -274,7 +274,7 @@ export function AIChatWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-[max(1.5rem,calc(env(safe-area-inset-bottom)+1rem))] right-6 md:right-8 z-50 flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-accent text-accent-fg shadow-xl hover:shadow-2xl border border-black/10 dark:border-white/15 cursor-pointer backdrop-blur-md transition-all duration-300 group"
+        className="fixed bottom-[max(1.5rem,calc(env(safe-area-inset-bottom)+1rem))] right-6 md:right-8 z-50 flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-accent text-accent-fg shadow-xl hover:shadow-2xl border border-black/10 dark:border-white/15 cursor-pointer transition-all duration-300 group"
         aria-label="Toggle Daero AI Assistant"
       >
         <MessageSquare className="w-5 h-5 text-accent-fg" />

@@ -51,7 +51,7 @@ export function StatsBar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="rounded-3xl bg-white/70 dark:bg-panel/70 backdrop-blur-2xl border border-black/10 dark:border-white/10 shadow-xl p-4 sm:p-6 md:p-8"
+          className="rounded-3xl bg-white/70 dark:bg-panel/70 backdrop-blur-md md:backdrop-blur-2xl border border-black/10 dark:border-white/10 shadow-xl p-4 sm:p-6 md:p-8"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {stats.map((stat) => (

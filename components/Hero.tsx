@@ -54,8 +54,9 @@ export function Hero() {
       </div>
       
       {/* Background Ambience */}
-      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-dim-gray/10 rounded-full blur-[100px] opacity-50" />
-      <div className="absolute bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-panel/5 rounded-full blur-[100px] opacity-50" />
+      {/* Radial gradients instead of filter: blur(), which is expensive to repaint on iOS Safari */}
+      <div className="absolute -top-24 -right-24 -z-10 w-[700px] h-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(100_100_100/0.1),transparent)] opacity-50" />
+      <div className="absolute -bottom-24 -left-24 -z-10 w-[700px] h-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(17_17_17/0.05),transparent)] opacity-50" />
     </section>
   )
 }

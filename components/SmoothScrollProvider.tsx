@@ -29,6 +29,10 @@ export function smoothScrollToElement(element: HTMLElement, offset = -96) {
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Touch devices already have smooth native scrolling, and Lenis doesn't smooth touch input
+    // (syncTouch is off). Running its per-frame loop there only costs battery and frames on iOS.
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     const lenis = new Lenis({
       lerp: 0.1,
       wheelMultiplier: 1,
