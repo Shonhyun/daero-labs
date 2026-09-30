@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { ArrowRight, Calculator, Check, LoaderCircle, RotateCcw, Sparkles } from "lucide-react";
-import { formatUSD, platforms, type EstimateBreakdown, type PlatformId, type PriceRange } from "@/lib/estimator";
+import { formatRange, platforms, type EstimateBreakdown, type Feature, type PlatformId, type PriceRange } from "@/lib/estimator";
 import { START_PROJECT_URL } from "@/lib/booking";
 import { smoothScrollToElement } from "@/components/SmoothScrollProvider";
 
@@ -13,7 +13,14 @@ interface EstimateResult extends EstimateBreakdown {
   aiUsed: boolean;
 }
 
-const formatRange = (r: PriceRange) => `${formatUSD(r.min)} – ${formatUSD(r.max)}`;
+/** Groups a platform's features by category, keeping the order they're listed in. */
+function byCategory(features: Feature[]) {
+  const groups = new Map<string, Feature[]>();
+  for (const feature of features) {
+    groups.set(feature.category, [...(groups.get(feature.category) ?? []), feature]);
+  }
+  return [...groups.entries()];
+}
 
 function StepHeading({ step, title, hint }: { step: number; title: string; hint?: string }) {
   return (
@@ -26,6 +33,40 @@ function StepHeading({ step, title, hint }: { step: number; title: string; hint?
         {hint && <p className="text-sm text-dim-gray dark:text-silver mt-1">{hint}</p>}
       </div>
     </div>
+  );
+}
+
+function FeatureCard({ feature, selected, onToggle }: { feature: Feature; selected: boolean; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-pressed={selected}
+      onClick={onToggle}
+      className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all ${
+        selected
+          ? "border-accent bg-white dark:bg-onyx/40"
+          : "border-black/5 dark:border-white/10 bg-white/60 dark:bg-onyx/20 hover:border-black/20 dark:hover:border-white/25"
+      }`}
+    >
+      <span
+        className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+          selected ? "bg-accent text-accent-fg" : "bg-rich-black/5 dark:bg-white/10"
+        }`}
+      >
+        <feature.icon size={18} />
+      </span>
+      <span className="flex-1 min-w-0">
+        <span className="block font-semibold text-sm leading-snug">{feature.name}</span>
+        <span className="block text-xs text-dim-gray dark:text-silver leading-snug mt-0.5">{feature.description}</span>
+      </span>
+      <span
+        className={`w-5 h-5 rounded-full flex items-center justify-center border shrink-0 transition-colors ${
+          selected ? "bg-accent border-accent text-accent-fg" : "border-black/15 dark:border-white/20"
+        }`}
+      >
+        {selected && <Check size={12} strokeWidth={3} />}
+      </span>
+    </button>
   );
 }
 
@@ -140,46 +181,32 @@ export function CostEstimator({ initialPlatforms = [] }: { initialPlatforms?: Pl
           <div className="space-y-10">
             {activePlatforms.map((platform) => (
               <div key={platform.id}>
-                <div className="flex items-center gap-2 mb-4 text-sm font-semibold uppercase tracking-wider text-dim-gray dark:text-silver">
-                  <platform.icon size={16} /> {platform.name} features
+                <div className="flex items-center gap-2 mb-6 pb-3 border-b border-black/5 dark:border-white/10">
+                  <platform.icon size={20} />
+                  <h3 className="text-lg font-bold">{platform.name} features</h3>
+                  <span className="ml-auto text-xs text-dim-gray dark:text-silver">
+                    {activeFeatures.filter((k) => k.startsWith(`${platform.id}:`)).length} of {platform.features.length} selected
+                  </span>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {platform.features.map((feature) => {
-                    const key = `${platform.id}:${feature.id}`;
-                    const selected = selectedFeatures.includes(key);
-                    return (
-                      <button
-                        key={key}
-                        type="button"
-                        aria-pressed={selected}
-                        onClick={() => toggleFeature(key)}
-                        className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all ${
-                          selected
-                            ? "border-accent bg-white dark:bg-onyx/40"
-                            : "border-black/5 dark:border-white/10 bg-white/60 dark:bg-onyx/20 hover:border-black/20 dark:hover:border-white/25"
-                        }`}
-                      >
-                        <span
-                          className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                            selected ? "bg-accent text-accent-fg" : "bg-rich-black/5 dark:bg-white/10"
-                          }`}
-                        >
-                          <feature.icon size={18} />
-                        </span>
-                        <span className="flex-1 min-w-0">
-                          <span className="block font-semibold text-sm leading-snug">{feature.name}</span>
-                          <span className="block text-xs text-dim-gray dark:text-silver leading-snug mt-0.5">{feature.description}</span>
-                        </span>
-                        <span
-                          className={`w-5 h-5 rounded-full flex items-center justify-center border shrink-0 transition-colors ${
-                            selected ? "bg-accent border-accent text-accent-fg" : "border-black/15 dark:border-white/20"
-                          }`}
-                        >
-                          {selected && <Check size={12} strokeWidth={3} />}
-                        </span>
-                      </button>
-                    );
-                  })}
+                <div className="space-y-8">
+                  {byCategory(platform.features).map(([category, features]) => (
+                    <div key={category}>
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-dim-gray dark:text-silver">{category}</p>
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        {features.map((feature) => {
+                          const key = `${platform.id}:${feature.id}`;
+                          return (
+                            <FeatureCard
+                              key={key}
+                              feature={feature}
+                              selected={selectedFeatures.includes(key)}
+                              onToggle={() => toggleFeature(key)}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
@@ -248,14 +275,17 @@ export function CostEstimator({ initialPlatforms = [] }: { initialPlatforms?: Pl
             <div className="mt-8">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-dim-gray dark:text-silver mb-4">Breakdown</p>
               <ul className="divide-y divide-black/5 dark:divide-white/10">
-                {result.lineItems.map((item) => (
-                  <li key={`${item.platform}-${item.kind}-${item.name}`} className="flex items-start justify-between gap-4 py-3 text-sm">
-                    <span className={item.kind === "base" ? "font-semibold" : "text-dim-gray dark:text-silver pl-4"}>
-                      {item.kind === "base" ? `${platforms.find((p) => p.id === item.platform)?.name}: ${item.name}` : item.name}
-                    </span>
-                    <span className="shrink-0 tabular-nums">{formatRange(item)}</span>
-                  </li>
-                ))}
+                {result.lineItems.map((item) => {
+                  const isAdjustment = item.kind === "floor" || item.kind === "cap";
+                  return (
+                    <li key={`${item.platform}-${item.kind}-${item.name}`} className="flex items-start justify-between gap-4 py-3 text-sm">
+                      <span className={item.kind === "base" ? "font-semibold" : isAdjustment ? "pl-4 italic" : "text-dim-gray dark:text-silver pl-4"}>
+                        {item.kind === "base" ? `${platforms.find((p) => p.id === item.platform)?.name}: ${item.name}` : item.name}
+                      </span>
+                      <span className="shrink-0 tabular-nums">{formatRange(item, isAdjustment)}</span>
+                    </li>
+                  );
+                })}
                 {result.custom.map((item) => (
                   <li key={`custom-${item.name}`} className="flex items-start justify-between gap-4 py-3 text-sm">
                     <span className="flex flex-wrap items-center gap-2">
@@ -270,10 +300,15 @@ export function CostEstimator({ initialPlatforms = [] }: { initialPlatforms?: Pl
                 {result.discount.max > 0 && (
                   <li className="flex items-start justify-between gap-4 py-3 text-sm">
                     <span>Multi-platform savings (shared backend)</span>
-                    <span className="shrink-0 tabular-nums">−{formatRange(result.discount)}</span>
+                    <span className="shrink-0 tabular-nums">{formatRange({ min: -result.discount.min, max: -result.discount.max }, true)}</span>
                   </li>
                 )}
               </ul>
+              {result.capped && (
+                <p className="mt-4 text-sm text-dim-gray dark:text-silver">
+                  That&apos;s a big scope! We cap our estimates to keep things fair, and we&apos;ll finalize the exact price with you on a call.
+                </p>
+              )}
               {result.customUnpriced.length > 0 && (
                 <p className="mt-4 text-sm text-dim-gray dark:text-silver">
                   Not included yet: {result.customUnpriced.join(", ")}. We&apos;ll price these with you on a call.

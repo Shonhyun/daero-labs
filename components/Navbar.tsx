@@ -4,12 +4,25 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { ChevronDown, Menu, X } from "lucide-react"
 import { ThemeToggle } from "./ThemeToggle"
 import { Logo } from "./Logo"
 
-const navLinks = [
-  { name: "Services", href: "/services" },
+interface NavLink {
+  name: string
+  href: string
+  children?: { name: string; href: string; description: string }[]
+}
+
+const navLinks: NavLink[] = [
+  {
+    name: "Services",
+    href: "/services",
+    children: [
+      { name: "All Services", href: "/services", description: "Web, mobile, desktop, CRM & design" },
+      { name: "Project Estimator", href: "/estimate", description: "Get a ballpark price in seconds" },
+    ],
+  },
   { name: "About", href: "/about" },
   { name: "Technology", href: "/technology" },
   { name: "Careers", href: "/careers" },
@@ -77,15 +90,42 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <div className={`hidden md:flex items-center transition-all duration-[1000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${isScrolled ? "gap-6 lg:gap-8 ml-8" : "gap-12 lg:gap-16 ml-12"}`}>
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-dim-gray hover:text-rich-black dark:text-silver dark:hover:text-white-smoke transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.children ? (
+                <div key={link.name} className="relative group">
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-1 text-sm font-medium text-dim-gray hover:text-rich-black dark:text-silver dark:hover:text-white-smoke group-hover:text-rich-black dark:group-hover:text-white-smoke transition-colors"
+                  >
+                    {link.name}
+                    <ChevronDown size={14} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+                  </Link>
+                  {/* pt-3 bridges the gap so the menu stays open while the pointer moves down */}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-200">
+                    <div className="w-64 p-2 rounded-2xl bg-white dark:bg-panel border border-black/10 dark:border-white/10 shadow-xl">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block px-3 py-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+                        >
+                          <span className="block text-sm font-semibold text-rich-black dark:text-white-smoke">{child.name}</span>
+                          <span className="block text-xs text-dim-gray dark:text-silver mt-0.5">{child.description}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-medium text-dim-gray hover:text-rich-black dark:text-silver dark:hover:text-white-smoke transition-colors"
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Actions */}
@@ -129,14 +169,31 @@ export function Navbar() {
           >
             <div className="flex flex-col gap-6 text-2xl font-semibold">
                {navLinks.map((link) => (
-                  <Link 
-                    key={link.name} 
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-rich-black dark:text-white-smoke active:opacity-70 transition-opacity"
-                  >
-                    {link.name}
-                  </Link>
+                  <div key={link.name}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-rich-black dark:text-white-smoke active:opacity-70 transition-opacity"
+                    >
+                      {link.name}
+                    </Link>
+                    {link.children && (
+                      <div className="mt-3 ml-4 pl-4 border-l border-dim-gray/20 flex flex-col gap-3">
+                        {link.children
+                          .filter((child) => child.href !== link.href)
+                          .map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="text-lg font-medium text-dim-gray dark:text-silver active:opacity-70 transition-opacity"
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                      </div>
+                    )}
+                  </div>
                ))}
                <hr className="border-dim-gray/20 my-4" />
                <Link 
