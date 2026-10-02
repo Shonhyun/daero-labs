@@ -1,11 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { Rocket, Users, ShieldCheck, Code2 } from "lucide-react";
 
 interface StatItem {
   icon: typeof Rocket;
-  value: string;
+  numericValue: number;
+  decimals?: number;
   suffix?: string;
   label: string;
   description: string;
@@ -14,33 +16,71 @@ interface StatItem {
 const stats: StatItem[] = [
   {
     icon: Rocket,
-    value: "15",
+    numericValue: 100,
     suffix: "+",
     label: "Projects Shipped",
-    description: "Web, mobile & custom software",
+    description: "Web, mobile & enterprise apps",
   },
   {
     icon: Users,
-    value: "12",
+    numericValue: 90,
     suffix: "+",
     label: "Clients",
     description: "Founders & partner businesses",
   },
   {
     icon: ShieldCheck,
-    value: "99.9",
+    numericValue: 99.9,
+    decimals: 1,
     suffix: "%",
     label: "System Uptime",
     description: "Production-ready stability",
   },
   {
     icon: Code2,
-    value: "100",
+    numericValue: 100,
     suffix: "%",
     label: "In-House Craft",
     description: "Zero outsourcing, total quality",
   },
 ];
+
+function AnimatedCounter({ value, decimals = 0 }: { value: number; decimals?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime: number | null = null;
+    const duration = 1800; // ms
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      // Premium easeOutExpo: starts dynamic and smoothly lands into place
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = ease * value;
+      setCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(value);
+      }
+    };
+
+    const frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [isInView, value]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      {decimals > 0 ? count.toFixed(decimals) : Math.round(count)}
+    </span>
+  );
+}
 
 export function StatsBar() {
   return (
@@ -68,8 +108,8 @@ export function StatsBar() {
                   </span>
                 </div>
 
-                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display tracking-tight text-rich-black dark:text-white-smoke my-0.5 sm:my-1">
-                  {stat.value}
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display tracking-tight text-rich-black dark:text-white-smoke my-0.5 sm:my-1 flex items-baseline">
+                  <AnimatedCounter value={stat.numericValue} decimals={stat.decimals} />
                   {stat.suffix && (
                     <span className="text-accent text-xl sm:text-2xl md:text-3xl lg:text-4xl ml-0.5 font-bold">
                       {stat.suffix}
@@ -88,3 +128,4 @@ export function StatsBar() {
     </section>
   );
 }
+
