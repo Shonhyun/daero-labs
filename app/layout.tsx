@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body id="top" className={`${inter.variable} ${sora.variable} antialiased bg-white-smoke dark:bg-rich-black transition-colors duration-300`}>
+      <body id="top" className={`${inter.variable} ${sora.variable} antialiased bg-white-smoke dark:bg-rich-black`}>
         <ThemeProvider
             attribute="class"
             defaultTheme="system"

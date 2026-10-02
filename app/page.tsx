@@ -61,6 +61,15 @@ const apexFeatures = [
   "Luxury Dark UI",
 ];
 
+const resumaFeatures = [
+  "ATS-Optimized Templates",
+  "Drag & Drop Editor",
+  "Vector PDF Export",
+  "Live View Analytics",
+  "Data Portability",
+  "Next.js & Prisma",
+];
+
 export default function Home() {
   return (
     <>
@@ -133,8 +142,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Two columns so each project takes half the width */}
-          <div className="grid md:grid-cols-2 gap-8">
+          {/* 3 columns on large screens, responsive on mobile & tablet */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card noHover className="flex flex-col">
               <div className="flex items-center gap-5 mb-6">
                 <Image
@@ -226,6 +235,55 @@ export default function Home() {
                 </p>
                 <a
                   href="https://apexautospa-nine.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-fg text-sm font-semibold hover:bg-accent/90 transition-all"
+                >
+                  Visit Website <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </Card>
+
+            <Card noHover className="flex flex-col md:col-span-2 lg:col-span-1">
+              <div className="flex items-center gap-5 mb-6">
+                <Image
+                  src="/work/resuma.png"
+                  alt="Resuma logo"
+                  width={72}
+                  height={72}
+                  className="w-16 h-16 md:w-[72px] md:h-[72px] rounded-2xl shadow-md shrink-0 object-cover"
+                />
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold leading-tight">Resuma.</h3>
+                  <p className="mt-1 text-xs uppercase tracking-[0.2em] font-semibold text-dim-gray dark:text-silver">
+                    Web App
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-dim-gray dark:text-silver leading-relaxed mb-6">
+                A modern, ATS-optimized resume builder engineered for today&apos;s hiring teams. Featuring an intuitive
+                drag-and-drop editor, instant vector PDF exports, and live view tracking to help professionals showcase
+                their careers with precision.
+              </p>
+
+              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-dim-gray dark:text-silver mb-3">
+                Key Features
+              </p>
+              <ul className="flex flex-wrap gap-2 mb-8">
+                {resumaFeatures.map((feature) => (
+                  <li key={feature} className="px-3 py-1 rounded-full text-xs font-medium bg-rich-black/5 dark:bg-white/10 text-rich-black dark:text-white-smoke">
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/10">
+                <p className="text-sm text-dim-gray dark:text-silver mb-4">
+                  Visit the website to craft ATS-ready resumes.
+                </p>
+                <a
+                  href="https://resuma-ph.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-fg text-sm font-semibold hover:bg-accent/90 transition-all"

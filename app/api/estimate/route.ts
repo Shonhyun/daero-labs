@@ -92,9 +92,17 @@ async function askAI(prompt: string): Promise<{ summary?: string; custom?: Custo
         let text: string = data.choices?.[0]?.message?.content || '';
         if (text.includes('</think>')) text = text.split('</think>').pop() || text;
 
-        const json = text.match(/\{[\s\S]*\}/);
-        if (!json) return null;
-        return JSON.parse(json[0]);
+        let cleaned = text.trim();
+        if (cleaned.startsWith('```')) {
+            cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+        }
+
+        const firstBrace = cleaned.indexOf('{');
+        const lastBrace = cleaned.lastIndexOf('}');
+        if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) return null;
+
+        const candidate = cleaned.slice(firstBrace, lastBrace + 1);
+        return JSON.parse(candidate);
     } catch (error) {
         console.error('Estimator AI request failed:', error);
         return null;
@@ -152,11 +160,16 @@ export async function POST(req: Request) {
         const customTotal = custom.reduce((sum, c) => ({ min: sum.min + c.min, max: sum.max + c.max }), { min: 0, max: 0 });
         const estimate = custom.length ? calculateEstimate(platformIds, featureKeys, customTotal) : base;
 
+        const pricedLower = custom.map((c) => c.name.toLowerCase());
+        const customUnpriced = customRequested.filter(
+            (req) => !pricedLower.some((p) => p.includes(req.toLowerCase()) || req.toLowerCase().includes(p))
+        );
+
         return NextResponse.json({
             ...estimate,
             custom,
             // Custom items the AI couldn't price are quoted on a call instead.
-            customUnpriced: customRequested.length > 0 && custom.length === 0 ? customRequested : [],
+            customUnpriced,
             summary: typeof ai?.summary === 'string' && ai.summary.trim() ? ai.summary.trim() : fallbackSummary(platformNames, featureCount + custom.length),
             aiUsed: ai !== null,
         });

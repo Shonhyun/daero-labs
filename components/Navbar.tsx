@@ -73,7 +73,7 @@ export function Navbar() {
         <motion.div
           layout
           className={`
-            pointer-events-auto
+            ${pathname === "/" && !isScrolled ? "pointer-events-none" : "pointer-events-auto"}
             relative flex items-center justify-between
             transition-all duration-[1000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]
             ${

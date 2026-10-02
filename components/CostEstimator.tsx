@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Calculator, Check, LoaderCircle, RotateCcw, Sparkles } from "lucide-react";
 import { formatRange, platforms, type EstimateBreakdown, type Feature, type PlatformId, type PriceRange } from "@/lib/estimator";
 import { START_PROJECT_URL } from "@/lib/booking";
@@ -79,6 +79,12 @@ export function CostEstimator({ initialPlatforms = [] }: { initialPlatforms?: Pl
   const [result, setResult] = useState<EstimateResult | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (result && resultRef.current) {
+      smoothScrollToElement(resultRef.current);
+    }
+  }, [result]);
+
   const activePlatforms = platforms.filter((p) => selectedPlatforms.includes(p.id));
   // Features of a platform that was deselected don't count.
   const activeFeatures = selectedFeatures.filter((key) => selectedPlatforms.includes(key.split(":")[0] as PlatformId));
@@ -120,7 +126,6 @@ export function CostEstimator({ initialPlatforms = [] }: { initialPlatforms?: Pl
 
       setResult(data);
       setStatus("idle");
-      requestAnimationFrame(() => resultRef.current && smoothScrollToElement(resultRef.current));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       setStatus("error");
